@@ -37,4 +37,15 @@ public class AllergyServiceImpl implements AllergyService {
 
 	}
 
+	@Override
+	public List<String> fetchAllergyTypes() {
+		List<String> allergyTypes = new ArrayList<>();
+		List<MasterAllergy> list = alleryRepo.findAll();
+
+		for (MasterAllergy ma : list) {
+			allergyTypes.add(ma.getAllergyType());
+		}
+		return allergyTypes;
+	}
+
 }

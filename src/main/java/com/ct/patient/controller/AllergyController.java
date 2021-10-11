@@ -44,6 +44,15 @@ public class AllergyController {
 	public List<String> fetchAllergyIds() {
 		return allergyService.fetchAllergyIds();
 	}
+	
+	
+	
+	@GetMapping("/allergy/types")
+	public List<String> fetchAllergyTypes() {
+		return allergyService.fetchAllergyTypes();
+	}
+	
+	
 
 	
 	

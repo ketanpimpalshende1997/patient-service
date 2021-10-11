@@ -10,4 +10,6 @@ public interface AllergyService {
 
 	public List<String> fetchAllergyIds();
 
+	public List<String> fetchAllergyTypes();
+
 }
