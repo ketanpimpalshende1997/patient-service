@@ -2,7 +2,7 @@ package com.ct.patient.service;
 
 import java.util.List;
 
-import com.ct.patient.request.MasterAllergy;
+import com.ct.patient.entity.MasterAllergy;
 
 public interface AllergyService {
 

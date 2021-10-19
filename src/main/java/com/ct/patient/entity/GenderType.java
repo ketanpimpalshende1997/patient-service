@@ -1,4 +1,4 @@
-package com.ct.patient.request;
+package com.ct.patient.entity;
 
 public enum GenderType 
 {

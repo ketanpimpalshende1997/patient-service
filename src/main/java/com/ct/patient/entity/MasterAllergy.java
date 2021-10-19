@@ -1,4 +1,4 @@
-package com.ct.patient.request;
+package com.ct.patient.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
