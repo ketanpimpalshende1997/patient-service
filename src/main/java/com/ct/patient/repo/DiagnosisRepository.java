@@ -10,5 +10,5 @@ import com.ct.patient.entity.Diagnosis;
 @Repository
 public interface DiagnosisRepository extends JpaRepository<Diagnosis, Long> {
 
-	List<Diagnosis> findByapointmentId(Long appointmentId);
+	List<Diagnosis> findByAppointmentId(Long appointmentId);
 }

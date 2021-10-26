@@ -1,7 +1,11 @@
 package com.ct.patient.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,24 +15,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@AllArgsConstructor
 @Setter
 @Getter
-@Table
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "drug_details")
 public class Drug {
 
 	@Id
-	@Column(name = "id")
-	private Integer id;
-
-	@Column(name = "drugid")
-	private Integer drugId;
-
-	@Column(name = "drugname")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String drugId;
 	private String drugName;
-
-	@Column(name = "drugform")
+	private String drugGenericName;
+	private String drugBrandName;
 	private String drugForm;
+
+	@Column(name = "appointment_Id", nullable = false)
+	private Integer appointmentId;
+
+	private Date createdAt;
+
+	private Date updatedAt;
+
+	private String createdBy;
+
+	private String updatedBy;
 
 }

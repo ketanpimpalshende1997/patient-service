@@ -22,6 +22,9 @@ public class DiagnosisMaster {
 	@Column(name = "diagnosis_code")
 	private String diagnosisCode;
 
-	@Column(name = "diagnosis_name")
-	private String diagnosisName;
+	private String description;
+
+//	@Column(columnDefinition = "boolean default false")
+	private boolean isDepricated;
+
 }

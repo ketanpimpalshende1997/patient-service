@@ -23,22 +23,16 @@ import lombok.Setter;
 public class Diagnosis {
 
 	@Id
-	@Column(name = "identity")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private String name;
 
 	@Column(name = "diagnosis_code")
 	private String diagnosisCode;
 
-	@Column(name = "diagnosis_name")
-	private String diagnosisName;
+	@Column(name = "description")
+	private String description;
 
-	@Column(name = "discription")
-	private String discription;
-
-	private Long apointmentId;
+	private Long appointmentId;
 
 	private Date createdAt;
 

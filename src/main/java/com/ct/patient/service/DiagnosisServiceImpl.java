@@ -17,12 +17,11 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	private DiagnosisRepository repository;
 
 	@Override
-	public boolean saveDiagnoses(Diagnosisdto diagnoses, long appointmentId) {
+	public boolean saveDiagnoses(Diagnosisdto diagnosisDto) {
 		Diagnosis diagnose = new Diagnosis();
-		diagnose.setApointmentId(appointmentId);
-		diagnose.setDiagnosisCode(diagnoses.getDiagnosisCode());
-		diagnose.setDiagnosisName(diagnoses.getDiagnosisName());
-		diagnose.setDiscription(diagnoses.getDiscription());
+		diagnose.setAppointmentId(diagnosisDto.getAppointmentId());
+		diagnose.setDiagnosisCode(diagnosisDto.getDiagnosisCode());
+		diagnose.setDescription(diagnosisDto.getDescription());
 		diagnose.setCreatedAt(new Date());
 		diagnose.setUpdatedAt(new Date());
 		Diagnosis d = repository.save(diagnose);
@@ -31,7 +30,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 
 	@Override
 	public List<Diagnosis> findWithAppointmentId(Long id) {
-		return repository.findByapointmentId(id);
+		return repository.findByAppointmentId(id);
 	}
 
 	@Override

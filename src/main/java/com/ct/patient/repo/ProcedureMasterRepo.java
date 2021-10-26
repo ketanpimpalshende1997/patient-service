@@ -1,6 +1,9 @@
 package com.ct.patient.repo;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ct.patient.entity.ProcedureMaster;
@@ -10,5 +13,7 @@ public interface ProcedureMasterRepo extends JpaRepository<ProcedureMaster, Stri
 
 	public ProcedureMaster findByprocedureCode(String procedureCode);
 
-	public ProcedureMaster findByprocedureDiscription(String procedureName);
+	@Query("FROM ProcedureMaster pm WHERE pm.isDepricated = false")
+	List<ProcedureMaster> findAllActiveProcedures();
+
 }

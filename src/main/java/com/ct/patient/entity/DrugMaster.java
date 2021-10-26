@@ -10,18 +10,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "procedure_master")
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProcedureMaster {
+@Setter
+@Getter
+@Table
+public class DrugMaster {
 
 	@Id
-	private String procedureCode;
-
-	private String description;
-
-	private boolean isDepricated;
+	private String drugId;
+	private String drugName;
+	private String drugGenericName;
+	private String drugBrandName;
+	private String drugForm;
+	private String drugStrength;
+	private boolean isDeprecated;
 
 }

@@ -1,9 +1,7 @@
 package com.ct.patient.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ct.patient.dto.Proceduredto;
+import com.ct.patient.dto.ProcedureMasterDto;
 import com.ct.patient.entity.Procedure;
 import com.ct.patient.entity.ProcedureMaster;
-import com.ct.patient.entity.Procedures;
 import com.ct.patient.response.ErrorMsg;
 import com.ct.patient.response.Response;
 import com.ct.patient.service.ProcedureMsService;
@@ -49,9 +46,24 @@ public class ProceduremasterController {
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
-	@GetMapping("/procedures")
-	public List<ProcedureMaster> getAll() {
+	@GetMapping("/master/procedures")
+	public List<ProcedureMasterDto> getAll() {
 		return service.getAll();
+	}
+	
+	
+	@Operation(summary = "fetch all master procedures which are not deprecated ", description = "This API is used to fetch all master procedures which are not deprecated.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "found all procedure details successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+			@ApiResponse(responseCode = "400", description = "Validation error", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
+			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
+
+	@GetMapping("/master/active/procedures")
+	public List<ProcedureMasterDto> getAllActiveProcedures() {
+		return service.getAllActiveProcedures();
 	}
 
 	@Operation(summary = "save procedure Details", description = "This API is used to save procedure details.")
@@ -63,13 +75,40 @@ public class ProceduremasterController {
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
-	@PostMapping("/saveProcedures/{id}")
-	public Response saveProcedures(@RequestBody Proceduredto procedures, @PathVariable("id") Integer appointMentId) {
-		Procedures proc = new Procedures();
-		BeanUtils.copyProperties(procedures, proc);
-		List<Procedures> list = new ArrayList<>();
-		list.add(proc);
-		boolean isSaved = procedureService.save(list, appointMentId);
+	@PostMapping("/saveProcedures")
+	public Response saveProcedures(@RequestBody Procedure procedure) {
+
+		boolean isSaved = procedureService.save(procedure);
+		if (isSaved)
+			return new Response("saved successfully! ..");
+		else
+			return new Response("error ...");
+
+	}
+
+	@Operation(summary = "save procedure Details", description = "This API is used to save procedure details.")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Saved procedure details successfully", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class)) }),
+			@ApiResponse(responseCode = "400", description = "Validation error", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
+			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
+					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
+
+	@PostMapping("/master/save")
+	public Response saveProcedureMaster(@RequestBody ProcedureMasterDto procedureMasterDto) {
+
+		ProcedureMaster procMaster = new ProcedureMaster();
+		procMaster.setProcedureCode(procedureMasterDto.getProcedureCode());
+		procMaster.setDescription(procedureMasterDto.getDescription());
+
+		if (procedureMasterDto.getIsDepricated().equalsIgnoreCase("yes")) {
+			procMaster.setDepricated(true);
+		} else {
+			procMaster.setDepricated(false);
+		}
+
+		boolean isSaved = procedureService.saveMaster(procMaster);
 		if (isSaved)
 			return new Response("saved successfully! ..");
 		else
@@ -91,20 +130,6 @@ public class ProceduremasterController {
 		return service.getByProcedureCode(code);
 	}
 
-	@Operation(summary = "fetch procedure Details by procedure name", description = "This API is used to fetch procedure details  by procedure name.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
-			@ApiResponse(responseCode = "400", description = "Validation error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
-			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
-
-	@GetMapping("/getByName/{name}")
-	public ProcedureMaster getWithProcedureName(@PathVariable("name") String name) {
-		return service.getByProcedureName(name);
-
-	}
 
 	@Operation(summary = "fetch procedure Details by appointment id.", description = "This API is used to fetch procedure Details by appointment id.")
 	@ApiResponses(value = {
@@ -129,8 +154,9 @@ public class ProceduremasterController {
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
-	@DeleteMapping("/deleteProcedure/{procedureId}")
-	public Response deleteProcedure(@PathVariable("procedureId") Long procedureId) {
+	@DeleteMapping("/deleteProcedure/{id}")
+	public Response deleteProcedure(@PathVariable("id") Long procedureId) {
+				
 		boolean isDeleted = procedureService.deleteProcedure(procedureId);
 
 		if (isDeleted) {

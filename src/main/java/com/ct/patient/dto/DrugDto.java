@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Medicinedto {
+public class DrugDto {
 
 	private Integer appointmentId;
-
+	private String drugId;
 	private String drugName;
-
+	private String drugGenericName;
+	private String drugBrandName;
 	private String drugForm;
 
-	private String discription;
 }

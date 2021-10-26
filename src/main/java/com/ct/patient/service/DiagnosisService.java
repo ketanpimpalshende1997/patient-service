@@ -7,7 +7,7 @@ import com.ct.patient.entity.Diagnosis;
 
 public interface DiagnosisService {
 
-	boolean saveDiagnoses(Diagnosisdto diagnoses, long appointmentId);
+	boolean saveDiagnoses(Diagnosisdto diagnoses);
 
 	List<Diagnosis> findWithAppointmentId(Long id);
 

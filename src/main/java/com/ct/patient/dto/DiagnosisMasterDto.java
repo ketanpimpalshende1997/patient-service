@@ -5,9 +5,12 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Diagnosisdto {
-
-	private Long appointmentId;
+public class DiagnosisMasterDto 
+{
 	private String diagnosisCode;
+
 	private String description;
+
+	private String isDepricated;
+
 }
