@@ -3,7 +3,7 @@ package com.ct.patient.service;
 import java.util.List;
 
 import com.ct.patient.entity.Procedure;
-import com.ct.patient.entity.ProcedureMaster;
+import com.ct.patient.entity.MasterProcedure;
 
 public interface ProcedureService {
 
@@ -13,5 +13,5 @@ public interface ProcedureService {
 
 	boolean deleteProcedure(Long procedureId);
 
-	boolean saveMaster(ProcedureMaster procedureMaster);
+	boolean saveMaster(MasterProcedure procedureMaster);
 }

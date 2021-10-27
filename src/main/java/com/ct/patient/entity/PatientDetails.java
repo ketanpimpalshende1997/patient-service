@@ -20,11 +20,12 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "patient")
+@Table(name = "patient_details")
 public class PatientDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="user_id")
 	private Long id;
 
 	@Schema(description = "title", example = "Mr.")
@@ -40,7 +41,7 @@ public class PatientDetails {
 	private String lastName;
 
 	@Schema(description = "date of birth",  example = "13/3/1997")
-	@Column(name = "dob")
+	@Column(name = "birth_date")
 	private LocalDate dob;
 
 	@Schema(description = "age",  example = "25")
@@ -56,11 +57,11 @@ public class PatientDetails {
 	private String race;
 
 	@Schema(description = "ethnicity",  example = "xyz")
-	@Column(name = "ethinicity")
+	@Column(name = "ethnicity")
 	private String ethnicity;
 
 	@Schema(description = "language known",  example = "Marathi, Hindi")
-	@Column(name = "lang_known")
+	@Column(name = "languages")
 	private String langKnown;
 
 	@Schema(description = "email",  example = "ketanp@gmail.com")
@@ -135,12 +136,9 @@ public class PatientDetails {
 	@Column(name = "emgr_country")
 	private String emgrCountry;
 
-	@Schema(description = "user id",  example = "32")
-	@Column(name = "user_id")
-	private Long userId;
 
-	@OneToMany(mappedBy = "patientDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	// @JoinColumn(name = "pd_fk", referencedColumnName = "id")
-	private List<Allergy> allergies;
+//	@OneToMany(mappedBy = "patientDetails", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	// @JoinColumn(name = "pd_fk", referencedColumnName = "id")
+//	private List<Allergy> allergies;
 
 }

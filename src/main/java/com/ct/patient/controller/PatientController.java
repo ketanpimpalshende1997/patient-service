@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ct.patient.dto.MessageResponseDto;
-import com.ct.patient.entity.AllergyMaster;
+import com.ct.patient.entity.MasterAllergy;
 import com.ct.patient.entity.PatientDetails;
 import com.ct.patient.repo.AllergyMasterRepository;
 import com.ct.patient.response.ErrorMsg;
@@ -38,8 +38,6 @@ public class PatientController {
 
 	@Autowired
 	private IPatientDetailsService patientDetailsService;
-	@Autowired
-	private AllergyMasterRepository allergyMaster;
 
 	@Operation(summary = "Save Patient Details", description = "This API is used to save details of a patient.")
 	@ApiResponses(value = {
@@ -127,46 +125,18 @@ public class PatientController {
 		return patientDetailsService.getUserById(id);
 	}
 
-	@Operation(summary = "fetch patient details details by user id", description = "This API is used to fetch patient details by user id")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found patient details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = PatientDetails.class)) }),
-			@ApiResponse(responseCode = "400", description = "Validation error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
-			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
-
-	@GetMapping("/getByUserId/{id}")
-	public PatientDetails getUserDetailsById(@PathVariable("id") Long id) {
-		return patientDetailsService.getByUserId(id);
-	}
-
-	@Operation(summary = "fetch all allergy", description = "This API is used to fetch master data of allergy.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found allergy details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = MessageResponseDto.class)) }),
-			@ApiResponse(responseCode = "400", description = "Validation error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
-			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
-
-	@GetMapping("/allAllergy")
-	public List<AllergyMaster> getAllAllergy() {
-		return allergyMaster.findAll();
-	}
-
-	@Operation(summary = "fetch allergy details", description = "This API is used to fetch allergy details by allergy code.")
-	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "found allergy details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = MessageResponseDto.class)) }),
-			@ApiResponse(responseCode = "400", description = "Validation error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
-			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
-
-	@GetMapping("/getAllergyByCode/{allergyCode}")
-	public List<AllergyMaster> getAllergyByCode(@PathVariable String allergyCode) {
-		return allergyMaster.findByAllergyCode(allergyCode);
-	}
+//	@Operation(summary = "fetch patient details details by user id", description = "This API is used to fetch patient details by user id")
+//	@ApiResponses(value = {
+//			@ApiResponse(responseCode = "200", description = "found patient details successfully", content = {
+//					@Content(mediaType = "application/json", schema = @Schema(implementation = PatientDetails.class)) }),
+//			@ApiResponse(responseCode = "400", description = "Validation error", content = {
+//					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
+//			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
+//					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
+//
+//	@GetMapping("/getByUserId/{id}")
+//	public PatientDetails getUserDetailsById(@PathVariable("id") Long id) {
+//		return patientDetailsService.getByUserId(id);
+//	}
 
 }

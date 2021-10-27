@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ct.patient.dto.ProcedureMasterDto;
-import com.ct.patient.entity.ProcedureMaster;
+import com.ct.patient.entity.MasterProcedure;
 import com.ct.patient.repo.ProcedureMasterRepo;
 
 @Service
@@ -18,11 +18,11 @@ public class ProcedureMsService {
 
 	public List<ProcedureMasterDto> getAll() {
 
-		List<ProcedureMaster> procMaster = repo.findAll();
+		List<MasterProcedure> procMaster = repo.findAll();
 
 		List<ProcedureMasterDto> listDto = new ArrayList<>();
 
-		for (ProcedureMaster procMasterData : procMaster) {
+		for (MasterProcedure procMasterData : procMaster) {
 			ProcedureMasterDto d = new ProcedureMasterDto();
 			d.setProcedureCode(procMasterData.getProcedureCode());
 			d.setDescription(procMasterData.getDescription());
@@ -40,14 +40,14 @@ public class ProcedureMsService {
 
 	}
 
-	public ProcedureMaster getByProcedureCode(String code) {
+	public MasterProcedure getByProcedureCode(String code) {
 		return repo.findByprocedureCode(code);
 	}
 
 	public List<ProcedureMasterDto> getAllActiveProcedures() {
-		List<ProcedureMaster> list = repo.findAllActiveProcedures();
+		List<MasterProcedure> list = repo.findAllActiveProcedures();
 		List<ProcedureMasterDto> dtoList = new ArrayList<>();
-		for (ProcedureMaster pm : list) {
+		for (MasterProcedure pm : list) {
 			ProcedureMasterDto procMasterDto = new ProcedureMasterDto();
 			procMasterDto.setProcedureCode(pm.getProcedureCode());
 			procMasterDto.setDescription(pm.getDescription());

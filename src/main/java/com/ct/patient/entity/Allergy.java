@@ -2,15 +2,10 @@ package com.ct.patient.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -19,7 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "allergy_table")
+@Table(name = "allergy_details")
 public class Allergy {
 
 	@Id
@@ -45,11 +40,18 @@ public class Allergy {
 	@Schema(description = "allergy description",  example = "cough")
 	@Column(name = "allergy_desc")
 	private String allergyDesc;
+	
+	@Schema(description = "allergy Clinical Info",  example = "info")
+	@Column(name = "allergy_clinical_info")
+	private String allergyClinicalInfo;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "patient_details_id")
-	// @JsonIgnoreProperties("patientDetails")
-	@JsonIgnore
-	PatientDetails patientDetails;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "patient_details_id")
+//	// @JsonIgnoreProperties("patientDetails")
+//	@JsonIgnore
+//	PatientDetails patientDetails;
 
+	@Column(name="patient_details_id")
+	private Long patientId;
+	
 }

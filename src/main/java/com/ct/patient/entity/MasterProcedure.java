@@ -1,6 +1,5 @@
 package com.ct.patient.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,20 +10,18 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table
+@Table(name = "master_procedure")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class DiagnosisMaster {
+public class MasterProcedure {
 
 	@Id
-	@Column(name = "diagnosis_code")
-	private String diagnosisCode;
+	private String procedureCode;
 
 	private String description;
 
-//	@Column(columnDefinition = "boolean default false")
 	private boolean isDepricated;
 
 }

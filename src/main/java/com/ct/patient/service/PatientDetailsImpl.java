@@ -8,10 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ct.patient.entity.Allergy;
 import com.ct.patient.entity.PatientDetails;
 import com.ct.patient.exception.PatientNotFoundException;
-import com.ct.patient.repo.AllergyRepository;
 import com.ct.patient.repo.PatientDetailsRepository;
 
 @Service
@@ -21,15 +19,13 @@ public class PatientDetailsImpl implements IPatientDetailsService {
 
 	@Autowired
 	private PatientDetailsRepository patientDetailsRepo;
-	@Autowired
-	private AllergyRepository allergyRepository;
 
 	@Override
 	public Long addPatientDetails(PatientDetails patientDetails) {
 		PatientDetails pd = patientDetailsRepo.save(patientDetails);
-		List<Allergy> allergies = patientDetails.getAllergies();
-		allergies.forEach(al -> al.setPatientDetails(pd));
-		allergyRepository.saveAll(allergies);
+//		List<Allergy> allergies = patientDetails.getAllergies();
+//		allergies.forEach(al -> al.setPatientDetails(pd));
+//		allergyRepository.saveAll(allergies);
 		return pd.getId();
 
 	}
@@ -56,9 +52,9 @@ public class PatientDetailsImpl implements IPatientDetailsService {
 		}
 	}
 
-	@Override
-	public PatientDetails getByUserId(Long userId) {
-		return patientDetailsRepo.findByuserId(userId);
-	}
+//	@Override
+//	public PatientDetails getByUserId(Long userId) {
+//		return patientDetailsRepo.findByuserId(userId);
+//	}
 
 }

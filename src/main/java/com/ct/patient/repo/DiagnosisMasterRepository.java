@@ -6,14 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.ct.patient.entity.DiagnosisMaster;
+import com.ct.patient.entity.MasterDiagnosis;
 
 @Repository
-public interface DiagnosisMasterRepository extends JpaRepository<DiagnosisMaster, String> {
+public interface DiagnosisMasterRepository extends JpaRepository<MasterDiagnosis, String> {
 
-	public DiagnosisMaster findBydiagnosisCode(String diagnosisCode);
+	public MasterDiagnosis findBydiagnosisCode(String diagnosisCode);
 
-	@Query("FROM DiagnosisMaster dm WHERE dm.isDepricated = false")
-	List<DiagnosisMaster> findAllActiveDiagnosis();
+	@Query("FROM MasterDiagnosis dm WHERE dm.isDepricated = false")
+	List<MasterDiagnosis> findAllActiveDiagnosis();
 
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ct.patient.dto.ProcedureMasterDto;
 import com.ct.patient.entity.Procedure;
-import com.ct.patient.entity.ProcedureMaster;
+import com.ct.patient.entity.MasterProcedure;
 import com.ct.patient.response.ErrorMsg;
 import com.ct.patient.response.Response;
 import com.ct.patient.service.ProcedureMsService;
@@ -40,7 +40,7 @@ public class ProceduremasterController {
 	@Operation(summary = "fetch all procedure Details", description = "This API is used to fetch all procedure details.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found all procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterProcedure.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
@@ -55,7 +55,7 @@ public class ProceduremasterController {
 	@Operation(summary = "fetch all master procedures which are not deprecated ", description = "This API is used to fetch all master procedures which are not deprecated.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found all procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterProcedure.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
@@ -98,7 +98,7 @@ public class ProceduremasterController {
 	@PostMapping("/master/save")
 	public Response saveProcedureMaster(@RequestBody ProcedureMasterDto procedureMasterDto) {
 
-		ProcedureMaster procMaster = new ProcedureMaster();
+		MasterProcedure procMaster = new MasterProcedure();
 		procMaster.setProcedureCode(procedureMasterDto.getProcedureCode());
 		procMaster.setDescription(procedureMasterDto.getDescription());
 
@@ -119,14 +119,14 @@ public class ProceduremasterController {
 	@Operation(summary = "fetch procedure Details by procedure code", description = "This API is used to fetch procedure details  by procedure code.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterProcedure.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
 	@GetMapping("/getById/{id}")
-	public ProcedureMaster getWithProcedureCode(@PathVariable("id") String code) {
+	public MasterProcedure getWithProcedureCode(@PathVariable("id") String code) {
 		return service.getByProcedureCode(code);
 	}
 
@@ -134,7 +134,7 @@ public class ProceduremasterController {
 	@Operation(summary = "fetch procedure Details by appointment id.", description = "This API is used to fetch procedure Details by appointment id.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterProcedure.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
@@ -148,7 +148,7 @@ public class ProceduremasterController {
 	@Operation(summary = "delete procedure Details by procedure id.", description = "This API is used to delete procedure Details by procedure id.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found procedure details successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = ProcedureMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterProcedure.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
