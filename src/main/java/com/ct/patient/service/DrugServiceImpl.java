@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ct.patient.dto.DrugMasterDto;
 import com.ct.patient.dto.DrugDto;
 import com.ct.patient.entity.Drug;
-import com.ct.patient.entity.DrugMaster;
+import com.ct.patient.entity.MasterDrug;
 import com.ct.patient.repo.DrugMasterRepository;
 import com.ct.patient.repo.DrugRepository;
 
@@ -60,7 +60,7 @@ public class DrugServiceImpl implements DrugServiceI {
 	public boolean saveDrugMaster(DrugMasterDto drugDto)
 	{
 		
-		DrugMaster drugMaster=new DrugMaster();
+		MasterDrug drugMaster=new MasterDrug();
 		drugMaster.setDrugId(drugDto.getDrugId());
 		drugMaster.setDrugName(drugDto.getDrugName());
 		drugMaster.setDrugGenericName(drugDto.getDrugGenericName());
@@ -70,7 +70,7 @@ public class DrugServiceImpl implements DrugServiceI {
 		
 		
 		
-		DrugMaster d=	drugMasterepository.save(drugMaster);
+		MasterDrug d=	drugMasterepository.save(drugMaster);
 		return d!=null;
 	}
 

@@ -16,7 +16,7 @@ import com.ct.patient.dto.DiagnosisMasterDto;
 import com.ct.patient.dto.Diagnosisdto;
 import com.ct.patient.dto.MessageResponseDto;
 import com.ct.patient.entity.Diagnosis;
-import com.ct.patient.entity.DiagnosisMaster;
+import com.ct.patient.entity.MasterDiagnosis;
 import com.ct.patient.response.ErrorMsg;
 import com.ct.patient.response.Response;
 import com.ct.patient.service.DiagnosisMasterServiceI;
@@ -53,7 +53,7 @@ public class DiagnosisMasterController {
 	@PostMapping("/master/save")
 	public Response saveDiagnosisMasterData(@RequestBody DiagnosisMasterDto diagnosisMasterDto) {
 
-		DiagnosisMaster diagnosisMaster = new DiagnosisMaster();
+		MasterDiagnosis diagnosisMaster = new MasterDiagnosis();
 		diagnosisMaster.setDiagnosisCode(diagnosisMasterDto.getDiagnosisCode());
 		diagnosisMaster.setDescription(diagnosisMasterDto.getDescription());
 
@@ -81,7 +81,7 @@ public class DiagnosisMasterController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
 	@GetMapping("/getByDiagnosisCode/{diagnosisCode}")
-	public DiagnosisMaster getByDiagnosisCode(@PathVariable("diagnosisCode") String diagnosisCode) {
+	public MasterDiagnosis getByDiagnosisCode(@PathVariable("diagnosisCode") String diagnosisCode) {
 		return service.getWithDiagnosisCode(diagnosisCode);
 	}
 

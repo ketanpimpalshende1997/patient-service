@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "drug_details")
+@Table(name = "medication_details")
 public class Drug {
 
 	@Id

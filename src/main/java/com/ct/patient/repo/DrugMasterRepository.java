@@ -3,12 +3,12 @@ package com.ct.patient.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.ct.patient.entity.DrugMaster;
+import com.ct.patient.entity.MasterDrug;
 
 @Repository
-public interface DrugMasterRepository extends JpaRepository<DrugMaster, Integer> {
+public interface DrugMasterRepository extends JpaRepository<MasterDrug, Integer> {
 
-	public DrugMaster findBydrugId(Integer drugId);
+	public MasterDrug findBydrugId(Integer drugId);
 
-	public DrugMaster findBydrugName(String drugName);
+	public MasterDrug findBydrugName(String drugName);
 }

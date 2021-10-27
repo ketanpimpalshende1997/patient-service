@@ -14,8 +14,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
-@Table
-public class DrugMaster {
+@Table(name="master_medication")
+public class MasterDrug {
 
 	@Id
 	private String drugId;

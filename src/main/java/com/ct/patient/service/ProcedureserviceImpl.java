@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ct.patient.entity.Procedure;
-import com.ct.patient.entity.ProcedureMaster;
+import com.ct.patient.entity.MasterProcedure;
 import com.ct.patient.repo.ProcedureMasterRepo;
 import com.ct.patient.repo.ProcedureRepository;
 
@@ -41,8 +41,8 @@ public class ProcedureserviceImpl implements ProcedureService {
 	}
 
 	@Override
-	public boolean saveMaster(ProcedureMaster procedureMaster) {
-		ProcedureMaster proc = procedureMasterRepo.save(procedureMaster);
+	public boolean saveMaster(MasterProcedure procedureMaster) {
+		MasterProcedure proc = procedureMasterRepo.save(procedureMaster);
 		return proc != null;
 	}
 

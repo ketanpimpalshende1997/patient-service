@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ct.patient.dto.DrugMasterDto;
 import com.ct.patient.dto.DrugDto;
-import com.ct.patient.entity.DrugMaster;
+import com.ct.patient.entity.MasterDrug;
 import com.ct.patient.entity.Drug;
 import com.ct.patient.exception.MedicationNotFound;
 import com.ct.patient.response.ErrorMsg;
@@ -51,28 +51,28 @@ public class DrugMasterController {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
 	@GetMapping("master/drugs")
-	public List<DrugMaster> getAllDrugs() {
+	public List<MasterDrug> getAllDrugs() {
 		return service.getAllDrugs();
 	}
 
 	@Operation(summary = "fetch particular master drug details", description = "This API is used to fetch particular master drug details by drugId")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "found drug data successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = DrugMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterDrug.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
 
 	@GetMapping("master/drug/{id}")
-	public DrugMaster getById(@PathVariable("id") Integer id) {
+	public MasterDrug getById(@PathVariable("id") Integer id) {
 		return service.getByDrugId(id);
 	}
 
 	@Operation(summary = "save drug master data", description = "This API is used to save drug master data.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "saved drug data successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = DrugMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterDrug.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
@@ -92,7 +92,7 @@ public class DrugMasterController {
 	@Operation(summary = "save drug details", description = "This API is used to save drug details.")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "saved drug data successfully", content = {
-					@Content(mediaType = "application/json", schema = @Schema(implementation = DrugMaster.class)) }),
+					@Content(mediaType = "application/json", schema = @Schema(implementation = MasterDrug.class)) }),
 			@ApiResponse(responseCode = "400", description = "Validation error", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
 			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {

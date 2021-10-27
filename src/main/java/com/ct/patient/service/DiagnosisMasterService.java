@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ct.patient.dto.DiagnosisMasterDto;
-import com.ct.patient.entity.DiagnosisMaster;
+import com.ct.patient.entity.MasterDiagnosis;
 import com.ct.patient.repo.DiagnosisMasterRepository;
 
 @Service
@@ -18,11 +18,11 @@ public class DiagnosisMasterService implements DiagnosisMasterServiceI {
 
 	@Override
 	public List<DiagnosisMasterDto> getAllDiagnosis() {
-		List<DiagnosisMaster> diagnoMaster = repo.findAll();
+		List<MasterDiagnosis> diagnoMaster = repo.findAll();
 
 		List<DiagnosisMasterDto> listDto = new ArrayList<>();
 
-		for (DiagnosisMaster diagnoMasterData : diagnoMaster) {
+		for (MasterDiagnosis diagnoMasterData : diagnoMaster) {
 			DiagnosisMasterDto d = new DiagnosisMasterDto();
 			d.setDiagnosisCode(diagnoMasterData.getDiagnosisCode());
 			d.setDescription(diagnoMasterData.getDescription());
@@ -40,23 +40,23 @@ public class DiagnosisMasterService implements DiagnosisMasterServiceI {
 	}
 
 	@Override
-	public DiagnosisMaster getWithDiagnosisCode(String code) {
+	public MasterDiagnosis getWithDiagnosisCode(String code) {
 		return repo.findBydiagnosisCode(code);
 	}
 
 	@Override
-	public boolean saveDiagnosisMasterData(DiagnosisMaster diagnosis) {
-		DiagnosisMaster d = repo.save(diagnosis);
+	public boolean saveDiagnosisMasterData(MasterDiagnosis diagnosis) {
+		MasterDiagnosis d = repo.save(diagnosis);
 		return d != null;
 	}
 
 	@Override
 	public List<DiagnosisMasterDto> getAllActiveDiagnosis() {
 
-		List<DiagnosisMaster> list = repo.findAllActiveDiagnosis();
+		List<MasterDiagnosis> list = repo.findAllActiveDiagnosis();
 
 		List<DiagnosisMasterDto> dtoList = new ArrayList<>();
-		for (DiagnosisMaster dm : list) {
+		for (MasterDiagnosis dm : list) {
 			DiagnosisMasterDto diagnoMasterDto = new DiagnosisMasterDto();
 			diagnoMasterDto.setDiagnosisCode(dm.getDiagnosisCode());
 			diagnoMasterDto.setDescription(dm.getDescription());

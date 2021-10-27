@@ -8,5 +8,5 @@ import com.ct.patient.entity.PatientDetails;
 @Repository
 public interface PatientDetailsRepository extends JpaRepository<PatientDetails, Long> {
 
-	PatientDetails findByuserId(Long userId);
+//	PatientDetails findByuserId(Long userId);
 }
