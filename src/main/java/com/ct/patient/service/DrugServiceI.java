@@ -15,4 +15,7 @@ public interface DrugServiceI {
 	public boolean deleteMedication(Long medicationId);
 
 	public boolean saveDrugMaster(DrugMasterDto drugDto);
+	
+	public void deleteDrug(String id);
+	
 }

@@ -14,5 +14,7 @@ public interface DiagnosisMasterServiceI
 	public boolean saveDiagnosisMasterData(MasterDiagnosis diagnosis);
 
 	public List<DiagnosisMasterDto> getAllActiveDiagnosis();
+
+	public void deleteMasterDiagnosis(String diagnosisCode);
 		
 }

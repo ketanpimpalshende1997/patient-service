@@ -13,7 +13,10 @@ public interface ProcedureMasterRepo extends JpaRepository<MasterProcedure, Stri
 
 	public MasterProcedure findByprocedureCode(String procedureCode);
 
-	@Query("FROM MasterProcedure pm WHERE pm.isDepricated = false")
+	@Query("FROM MasterProcedure pm WHERE pm.isDepricated = false  order by procedureCode")
 	List<MasterProcedure> findAllActiveProcedures();
+
+	@Query("FROM MasterProcedure order by procedureCode")
+	List<MasterProcedure> findAll();
 
 }

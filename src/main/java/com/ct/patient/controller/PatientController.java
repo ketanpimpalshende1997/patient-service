@@ -125,18 +125,4 @@ public class PatientController {
 		return patientDetailsService.getUserById(id);
 	}
 
-//	@Operation(summary = "fetch patient details details by user id", description = "This API is used to fetch patient details by user id")
-//	@ApiResponses(value = {
-//			@ApiResponse(responseCode = "200", description = "found patient details successfully", content = {
-//					@Content(mediaType = "application/json", schema = @Schema(implementation = PatientDetails.class)) }),
-//			@ApiResponse(responseCode = "400", description = "Validation error", content = {
-//					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.BadRequest.class)) }),
-//			@ApiResponse(responseCode = "500", description = "Internal Server error", content = {
-//					@Content(mediaType = "application/json", schema = @Schema(implementation = ErrorMsg.InternalServerError.class)) }) })
-//
-//	@GetMapping("/getByUserId/{id}")
-//	public PatientDetails getUserDetailsById(@PathVariable("id") Long id) {
-//		return patientDetailsService.getByUserId(id);
-//	}
-
 }

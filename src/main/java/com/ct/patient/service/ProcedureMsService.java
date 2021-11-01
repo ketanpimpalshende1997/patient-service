@@ -58,4 +58,8 @@ public class ProcedureMsService {
 		return dtoList;
 	}
 
+	public void deleteProcedure(String procedureCode) {
+		 repo.deleteById(procedureCode);;
+	}
+
 }

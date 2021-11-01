@@ -87,6 +87,14 @@ public class DrugMasterController {
 			return new Response("not saved");
 	}
 
+	@DeleteMapping("/master/delete/{drugId}")
+	public Response saveMedications(@PathVariable String drugId) {
+		drugService.deleteDrug(drugId);
+
+		return new Response("deleted successfully..");
+
+	}
+
 	// ----------------- simple ----------------------------------
 
 	@Operation(summary = "save drug details", description = "This API is used to save drug details.")

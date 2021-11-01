@@ -42,11 +42,11 @@ public class PatientDetails {
 
 	@Schema(description = "date of birth",  example = "13/3/1997")
 	@Column(name = "birth_date")
-	private LocalDate dob;
+	private LocalDate birthDate;
 
 	@Schema(description = "age",  example = "25")
 	@Column(name = "age")
-	private int age;
+	private Integer age;
 
 	@Schema(description = "gender",  example = "Male")
 	@Column(name = "gender")
