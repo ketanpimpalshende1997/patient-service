@@ -50,6 +50,13 @@ public class AllergyController {
 	public List<MasterAllergy> getAllAllergy() {
 		return allergyMasterRepo.findAll();
 	}
+	
+	@GetMapping("/master/save")
+	public String saveAllergy(@RequestBody MasterAllergy allergy) {
+		 allergyMasterRepo.save(allergy);
+		 
+		 return "Allergy saved successfully";
+	}
 
 	@Operation(summary = "fetch allergy details", description = "This API is used to fetch allergy details by allergy code.")
 	@ApiResponses(value = {

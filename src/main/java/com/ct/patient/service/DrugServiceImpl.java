@@ -74,4 +74,10 @@ public class DrugServiceImpl implements DrugServiceI {
 		return d!=null;
 	}
 
+	@Override
+	public void deleteDrug(String id) {
+		drugMasterepository.deleteById(id);
+		
+	}
+
 }

@@ -68,4 +68,9 @@ public class DiagnosisMasterService implements DiagnosisMasterServiceI {
 
 	}
 
+	@Override
+	public void deleteMasterDiagnosis(String diagnosisCode) {
+		 repo.deleteById(diagnosisCode);;
+	}
+
 }

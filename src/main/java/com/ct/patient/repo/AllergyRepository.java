@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.ct.patient.entity.Allergy;
+import com.ct.patient.entity.MasterProcedure;
 
 @Repository
 public interface AllergyRepository extends JpaRepository<Allergy, Long> {
@@ -17,6 +18,6 @@ public interface AllergyRepository extends JpaRepository<Allergy, Long> {
 	void deleteById(Long pid);
 	
 	public List<Allergy> findByPatientId(Long id);
-	
+
 
 }

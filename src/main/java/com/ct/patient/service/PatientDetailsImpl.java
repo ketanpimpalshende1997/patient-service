@@ -1,7 +1,6 @@
 package com.ct.patient.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +22,7 @@ public class PatientDetailsImpl implements IPatientDetailsService {
 	@Override
 	public Long addPatientDetails(PatientDetails patientDetails) {
 		PatientDetails pd = patientDetailsRepo.save(patientDetails);
-//		List<Allergy> allergies = patientDetails.getAllergies();
-//		allergies.forEach(al -> al.setPatientDetails(pd));
-//		allergyRepository.saveAll(allergies);
+
 		return pd.getId();
 
 	}
@@ -43,18 +40,17 @@ public class PatientDetailsImpl implements IPatientDetailsService {
 
 	@Override
 	public PatientDetails getUserById(Long id) {
-		Optional<PatientDetails> patientDetails = patientDetailsRepo.findById(id);
+		PatientDetails patientDetails = patientDetailsRepo.findById(id).get();
 
-		if (patientDetails.isPresent()) {
-			return patientDetails.get();
+		if (null != patientDetails) {
+			if (null == patientDetails.getAge()) {
+				patientDetails.setAge(0);
+			}
+			return patientDetails;
+
 		} else {
 			throw new PatientNotFoundException(id);
 		}
 	}
-
-//	@Override
-//	public PatientDetails getByUserId(Long userId) {
-//		return patientDetailsRepo.findByuserId(userId);
-//	}
 
 }

@@ -51,6 +51,13 @@ public class ProceduremasterController {
 		return service.getAll();
 	}
 	
+	@DeleteMapping("/master/delete/{procedureCode}")
+	public String deleteProcedure(@PathVariable String procedureCode) {
+		 service.deleteProcedure(procedureCode);
+		 
+		 return "deleted successfully!!";
+	}
+	
 	
 	@Operation(summary = "fetch all master procedures which are not deprecated ", description = "This API is used to fetch all master procedures which are not deprecated.")
 	@ApiResponses(value = {

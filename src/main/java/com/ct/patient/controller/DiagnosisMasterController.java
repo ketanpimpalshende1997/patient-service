@@ -98,6 +98,14 @@ public class DiagnosisMasterController {
 	public List<DiagnosisMasterDto> getAllActiveDiagnosis() {
 		return service.getAllActiveDiagnosis();
 	}
+	
+	
+	@DeleteMapping("/master/deleteDiagnosis/{diagnosisCode}")
+	public String deleteMasterDiagnosis(@PathVariable("diagnosisCode") String diagnosisCode) {
+		 service.deleteMasterDiagnosis(diagnosisCode);
+		 
+		 return "Deleted Successfully!!";
+	}
 
 	// ------------------------- SIMPLE ---------------------------------
 
