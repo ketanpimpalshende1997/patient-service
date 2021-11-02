@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
-@CrossOrigin(value = "*")
+//@CrossOrigin(value = "*")
 @RequestMapping("/drug")
 public class DrugMasterController {
 

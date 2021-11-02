@@ -28,7 +28,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/procedure")
-@CrossOrigin(value = "*")
+//@CrossOrigin(value = "*")
 public class ProceduremasterController {
 
 	@Autowired

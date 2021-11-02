@@ -30,7 +30,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/diagnosis")
-@CrossOrigin(value = "*")
+//@CrossOrigin(value = "*")
 public class DiagnosisMasterController {
 
 	@Autowired

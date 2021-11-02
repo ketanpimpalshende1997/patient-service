@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/patient")
-@CrossOrigin(value = "*")
+//@CrossOrigin(value = "*")
 public class PatientController {
 	private Logger log = LoggerFactory.getLogger(PatientController.class);
 
